@@ -1,0 +1,51 @@
+services:
+  recharge-service:
+    build: recharge-service/.
+    container_name: recharge-service
+    restart: always
+    ports:
+      - "3002:3002"
+    env_file:
+      - recharge-service/.env
+    depends_on:
+      - postgres
+    networks:
+      - recharge-net
+    environment:
+      - YUNO_API_URL= http://yuno-mock-service:3001/
+      - DB_TYPE=postgres
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USERNAME=recharge_user
+      - DB_PASSWORD=recharge_password
+      - DB_NAME=recharge_db
+
+  mock-service:
+    build: yuno-mock-service/.
+    container_name: yuno-mock-service
+    restart: always
+    ports:
+      - "3001:3001"
+    networks:
+      - recharge-net
+
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    restart: always
+    ports:
+      - "5435:5432"
+    environment:
+      POSTGRES_DB: recharge_db
+      POSTGRES_USER: recharge_user
+      POSTGRES_PASSWORD: recharge_password
+    volumes:
+      - ./bin/:/docker-entrypoint-initdb.d/
+    networks:
+      - recharge-net
+
+networks:
+  recharge-net:
+
+volumes:
+  postgres_data:
