@@ -153,10 +153,10 @@ docker-compose down
 
 | **Method** | **Path**              | **Description**                                 | **Parameters**           | **Samples**                                                                |
 |------------|-----------------------|-------------------------------------------------|--------------------------|----------------------------------------------------------------------------|
-| POST       | /auth/login           | Autentica al usuario y retorna un JWT           | username, password       | [Login Request](docs/samples/login-request.json)           |
-| POST       | /recharges/buy        | Realiza una recarga de saldo                    | phoneNumber, amount      | [Buy Recharge](docs/samples/buy-recharge-request.json)    |
-| GET        | /recharges/history    | Obtiene el historial de recargas del usuario    | Authorization (header)   |      |
-| GET        | /health               | Verifica el estado de salud del servicio        |                          |    |
+| POST       | /auth/login           | Authenticates the user and returns a JWT          | username, password       | [Login Request](docs/samples/login-request.json)           |
+| POST       | /recharges/buy        | Processes a mobile recharge transaction                 | phoneNumber, amount      | [Buy Recharge](docs/samples/buy-recharge-request.json)    |
+| GET        | /recharges/history    | Retrieves the user's recharge history   | Authorization (header)   |      |
+| GET        | /health               | Checks the health status of the service       |                          |    |
 
 ## 🧪 Test Scenarios for Recharge
 
